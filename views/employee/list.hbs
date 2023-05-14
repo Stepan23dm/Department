@@ -1,0 +1,42 @@
+<h3><a class="btn btn-secondary" href="/employee/addOrEdit"><i class="fa fa-plus"></i> Добавить преподавателя</a></h3>
+<h3>Список преподавателей</h3>
+
+<script src='http://code.jquery.com/jquery-1.7.1.js'></script>
+
+<script>
+    $(function(){
+        $('table td:first-child').each(function (i) {
+                $(this).html(i+1);
+        });
+    });
+</script>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Имя преподавателя</th>
+            <th>Дата приема на работу</th>
+            <th>Должность</th>
+            <th>Нагрузка</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td></td>
+            <td>{{this.name}}</td>
+            <td>{{this.employmentDate}}</td>
+            <td>{{this.position}}</td>
+            <td>{{this.workload}}</td>
+            <td>
+                <a href="/employee/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a href="/employee/delete/{{this._id}}" onclick="return confirm('Удалить документ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                <a href="/employee/search/{{this._id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+

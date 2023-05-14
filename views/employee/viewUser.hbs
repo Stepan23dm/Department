@@ -1,0 +1,45 @@
+<h3><a class="btn btn-secondary" href="/employee"><i class="fa fa-arrow-left"></i> Список преподавателей</a></h3>
+<h3>{{viewTitle}}</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Имя преподавателя</th>
+            <th>Дата приема на работу</th>
+            <th>Должность</th>
+            <th>Нагрузка</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.employmentDate}}</td>
+            <td>{{this.position}}</td>
+            <td>{{this.workload}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+    <thead>
+        <tr>
+            <th>Ученая степень</th>
+            <th>Зарплата</th>
+            <th>Совместительство</th>
+            <th>Дисциплины</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+            <td>{{this.degree}}</td>
+            <td>{{this.salary}}</td>
+            <td>{{this.community_work}}</td>
+            <td>
+                {{#each this.disciplines}}
+                    <p>
+                        {{this}}
+                    </p>
+                {{/each}}
+            </td>
+        {{/each}}
+    </tbody>
+</table>

@@ -1,0 +1,74 @@
+<h3><a class="btn btn-secondary" href="/employee"><i class="fa fa-arrow-left"></i> Список преподавателей</a></h3>
+<h3>{{viewTitle}}</h3>
+
+<form action="/employee" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{employee._id}}">
+    <div class="form-group">
+        <label>ФИО (полное имя преподавателя)</label>
+        <input type="text" class="form-control" name="name" placeholder="ФИО" value="{{employee.name}}">
+        <div class="text-danger">
+            {{employee.NameError}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Дата приема на работу</label>
+        <input type="text" class="form-control" name="employmentDate" placeholder="2000-01-01" value="{{employee.employmentDate}}">
+        <div class="text-danger">
+            {{employee.employmentDateError}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Зарплата</label>
+        <input type="text" class="form-control" name="salary" placeholder="123456" value="{{employee.salary}}">
+        <div class="text-danger">
+            {{employee.salaryError}}
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Должность</label>
+            <input type="text" class="form-control" name="position" value="{{employee.position}}">
+            <div class="text-danger">
+            {{employee.positionError}}
+        </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Ученая степень</label>
+            <input type="text" class="form-control" name="degree" value="{{employee.degree}}">
+            <div class="text-danger">
+            {{employee.degreeError}}
+        </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Дисциплины</label>
+        <input type="text" class="form-control" name="disciplines" placeholder="Первая, Вторая, Третья, ..." value="{{employee.disciplines}}">
+        <div class="text-danger">
+            {{employee.disciplinesError}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Нагрузка</label>
+        <input type="text" class="form-control" name="workload" placeholder="1.0" value="{{employee.workload}}">
+        <div class="text-danger">
+            {{employee.workloadError}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Совместительство</label>
+        <input type="text" class="form-control" name="community_work" value="{{employee.community_work}}">
+        <div class="text-danger">
+            {{employee.community_workError}}
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+    </div>
+</form>
