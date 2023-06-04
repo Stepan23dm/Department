@@ -18,6 +18,29 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/searchTerm', (req, res) => {
+    const searchTerm = req.params.searchTerm;
+    const query = {
+        $or: [
+            { name: { $regex: searchTerm, $options: 'i' } },
+            { position: { $regex: searchTerm, $options: 'i' } },
+            { degree: { $regex: searchTerm, $options: 'i' } }
+        ]
+    };
+    Emp.find(query, (err, docs) => {
+        if (!err) {
+            res.render("employee", {
+                list: docs
+                
+            });
+        } 
+        else 
+        {
+            console.log('Error in retieving employee list:' + err);
+        }
+    });
+});
+
 router.get('/addOrEdit', (req, res) => {
     res.render('employee/addOrEdit', {
         viewTitle: "Добавить преподавателя"
@@ -67,7 +90,8 @@ function insertRecord(req, res){
 }
 
 function updateRecord(req, res) {
-    Emp.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+    const updateData = { $set: req.body };
+    Emp.findOneAndUpdate({ _id: req.body._id }, updateData, { new: true }, (err, doc) => {
         if (!err) { res.redirect('employee'); }
         else {
             if (err.name == "ValidationError") {
