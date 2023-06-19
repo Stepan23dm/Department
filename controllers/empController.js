@@ -61,9 +61,7 @@ function insertRecord(req, res){
     employee.salary = req.body.salary;
     employee.position = req.body.position;
     employee.degree = req.body.degree;
-
-    let message = req.body.disciplines;
-    employee.disciplines = message.split(',');
+    employee.disciplines = req.body.disciplines.split(',').map(word => word.trim())
 
     let workload = req.body.workload;
     if (workload <= 1)
@@ -90,7 +88,8 @@ function insertRecord(req, res){
 }
 
 function updateRecord(req, res) {
-    const updateData = { $set: req.body };
+    const { id, name, employmentDate, salary, position, degree, disciplines, workload, communitywork } = req.body;
+    const updateData =  { id, name, employmentDate, salary, position, degree, disciplines: disciplines.split(',').map(word => word.trim()), workload, communitywork};
     Emp.findOneAndUpdate({ _id: req.body._id }, updateData, { new: true }, (err, doc) => {
         if (!err) { res.redirect('employee'); }
         else {
